@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<!-- 
+  ============================================
+  DAILY BUILD - A Terminal-Style To-Do App
+  ============================================
+  Yeh ek simple to-do list app hai jo coding
+  terminal jaisa dikhta hai. Beginner-friendly
+  banaya gaya hai - har section commented hai.
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daily Build — Terminal To-Do</title>
+
+  <!-- Google Fonts: ek monospace font (coding feel ke liye) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Hamara apna CSS file -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- 
+    Poora app ek "window" ke andar hai, jaise VS Code ya
+    Terminal ki window dikhti hai - top pe 3 dots (red/yellow/green)
+  -->
+  <main class="terminal-window">
+
+    <!-- ===== TOP BAR: window ke 3 dots + title ===== -->
+    <header class="title-bar">
+      <div class="dots">
+        <span class="dot dot-red"></span>
+        <span class="dot dot-yellow"></span>
+        <span class="dot dot-green"></span>
+      </div>
+      <p class="title-bar-text">daily-build — ~/tasks</p>
+    </header>
+
+    <!-- ===== BODY: yahan pura app content hai ===== -->
+    <div class="terminal-body">
+
+      <!-- App ka naam/branding, jaise terminal banner -->
+      <pre class="ascii-header">
+  ____        _ _         ____        _ _     _
+ |  _ \  __ _(_) |_   _  | __ ) _   _(_) | __| |
+ | | | |/ _` | | | | | | |  _ \| | | | | |/ _` |
+ | |_| | (_| | | | |_| | | |_) | |_| | | | (_| |
+ |____/ \__,_|_|_|\__, | |____/ \__,_|_|_|\__,_|
+                   |___/
+      </pre>
+      <p class="subtitle">// track your tasks like you track your commits</p>
+
+      <!-- Stats row - kitne total, kitne done -->
+      <div class="stats" id="stats">
+        <span><span class="stat-number" id="statTotal">0</span> total</span>
+        <span class="stat-divider">|</span>
+        <span><span class="stat-number" id="statDone">0</span> done</span>
+        <span class="stat-divider">|</span>
+        <span><span class="stat-number" id="statPending">0</span> pending</span>
+      </div>
+
+      <!-- ===== INPUT AREA: yahan naya task type karte hain ===== -->
+      <form id="taskForm" class="task-input-row">
+        <span class="prompt-symbol">&gt;</span>
+        <input
+          type="text"
+          id="taskInput"
+          placeholder="add a new task and hit enter..."
+          autocomplete="off"
+        />
+        <select id="priorityInput" title="Priority">
+          <option value="low">low</option>
+          <option value="medium" selected>medium</option>
+          <option value="high">high</option>
+        </select>
+        <button type="submit" class="run-btn">run</button>
+      </form>
+
+      <!-- ===== FILTER TABS: All / Pending / Done ===== -->
+      <div class="filters" id="filters">
+        <button class="filter-btn active" data-filter="all">all</button>
+        <button class="filter-btn" data-filter="pending">pending</button>
+        <button class="filter-btn" data-filter="done">done</button>
+      </div>
+
+      <!-- ===== TASK LIST: JavaScript yahan tasks daalega ===== -->
+      <ul class="task-list" id="taskList">
+        <!-- Tasks yahan JavaScript se add honge -->
+      </ul>
+
+      <!-- Jab list khaali ho tab yeh message dikhega -->
+      <p class="empty-state" id="emptyState">
+        no tasks yet. type something above and press "run" ⬆
+      </p>
+
+      <!-- Blinking cursor - sirf decoration ke liye -->
+      <p class="cursor-line"><span class="prompt-symbol">&gt;</span> <span class="blinking-cursor">_</span></p>
+
+    </div>
+  </main>
+
+  <!-- Hamara JavaScript file - saara logic yahan hai -->
+  <script src="script.js"></script>
+</body>
+</html>
